@@ -2,9 +2,8 @@ import { Command, Option } from "clipanion";
 import pkg from "enquirer";
 const { prompt } = pkg;
 import chalk from "chalk";
-import { nanoid } from "nanoid";
 import { generateId, loadTasks, saveTasks } from "../utils/storage";
-import { Task } from "../utils/storage";
+import { Task, TaskStatus } from "../types/TaskStatus";
 
 interface PromptResponse extends Task {
   title: string;
@@ -30,6 +29,8 @@ export class AddCommand extends Command {
       id: generateId(),
       title,
       completed: false,
+      deleted: false,
+      status: TaskStatus.PENDING,
     };
 
     await saveTasks([...tasks, newTask]);

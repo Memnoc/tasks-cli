@@ -1,13 +1,9 @@
 import fs from "node:fs/promises";
 import { customAlphabet } from "nanoid";
+import { Task } from "../types/TaskStatus";
 
+// HEADER: a simpler ID system for the user
 export const generateId = customAlphabet("123456789", 4);
-
-export interface Task {
-  id: string;
-  title: string;
-  completed: boolean;
-}
 
 export async function loadTasks(): Promise<Task[]> {
   try {

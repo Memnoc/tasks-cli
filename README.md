@@ -19,15 +19,26 @@ Persistent storage using JSON
 
 ## Project Structure
 
-src/
-├── commands/
-│ ├── add.ts # Add new tasks
-│ ├── list.ts # List all tasks
-│ └── complete.ts # Mark tasks as complete
-├── utils/
-│ └── storage.ts # Task persistence
-├── types.ts # Shared types
-└── cli.ts # CLI entry point
+.
+├── LICENSE
+├── package-lock.json
+├── package.json
+├── README.md
+├── src
+│ ├── cli.ts
+│ ├── commands
+│ │ ├── add.ts
+│ │ ├── complete.ts
+│ │ ├── delete.ts
+│ │ └── list.ts
+│ ├── types
+│ │ └── TaskStatus.ts
+│ └── utils
+│ └── storage.ts
+├── tests
+│ └── commands
+├── tsconfig.json
+└── tsup.config.ts
 
 ## Development
 

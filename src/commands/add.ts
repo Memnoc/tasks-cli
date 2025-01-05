@@ -36,7 +36,7 @@ export class AddCommand extends Command {
       };
 
       await saveTasks([...tasks, newTask]);
-      this.context.stdout.write(chalk.green());
+      // this.context.stdout.write(chalk.green());
 
       alert({
         type: "success",

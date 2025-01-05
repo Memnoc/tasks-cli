@@ -3,7 +3,7 @@ import { Command } from "clipanion";
 import { loadTasks } from "../utils/storage";
 import { TaskStatus } from "../types/TaskStatus";
 
-// INFO: Prepferable to switch over statuse in an enum
+// INFO: Prepferable to switch over statuses in an enum
 const getStatusSymbol = (status: TaskStatus): string => {
   switch (status) {
     case TaskStatus.PENDING:

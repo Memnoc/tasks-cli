@@ -2,6 +2,7 @@ import { Command, Option } from "clipanion";
 import chalk from "chalk";
 import { loadTasks, saveTasks } from "../utils/storage";
 import { TaskStatus } from "../types/TaskStatus";
+import alert from "better-cli-alerts";
 
 export class CompleteCommand extends Command {
   static paths = [["complete"]];
@@ -17,14 +18,24 @@ export class CompleteCommand extends Command {
 
     const taskIndex = tasks.findIndex((t) => t.id === this.id);
     if (taskIndex === -1) {
-      this.context.stdout.write(chalk.red(`Task ${this.id} not found\n`));
+      // this.context.stdout.write(chalk.red(`Task ${this.id} not found\n`));
+      alert({
+        type: "error",
+        message: `Task ${this.id} not found`,
+        description: "ERROR",
+      });
       return 1;
     }
 
     tasks[taskIndex].status = TaskStatus.COMPLETED;
     await saveTasks(tasks);
-    this.context.stdout.write(
-      chalk.green(`Completed task:${tasks[taskIndex].title}\n`),
-    );
+    // this.context.stdout.write(
+    //   chalk.green(`Completed task:${tasks[taskIndex].title}\n`),
+    // );
+    alert({
+      type: "success",
+      message: `Completed task:${tasks[taskIndex].title}`,
+      description: "SUCCESS",
+    });
   }
 }

@@ -1,7 +1,6 @@
 import { Command, Option } from "clipanion";
 import pkg from "enquirer";
 const { prompt } = pkg;
-import chalk from "chalk";
 import { generateId, loadTasks, saveTasks } from "../utils/storage";
 import { Task, TaskStatus } from "../types/TaskStatus";
 import alert from "better-cli-alerts";
@@ -36,22 +35,21 @@ export class AddCommand extends Command {
       };
 
       await saveTasks([...tasks, newTask]);
-      // this.context.stdout.write(chalk.green());
 
       alert({
         type: "success",
         message: "Task added successfully",
-        description: "SUCCESS",
+        description: "YAY :)",
       });
 
       return 0;
     } catch (err: unknown) {
-      // type assertion for now
+      // INFO: type assertion for now
       const error = (err as Error).message ?? "Unknown error";
       alert({
         type: "error",
         message: error,
-        description: "ERROR",
+        description: "OOPS :(",
       });
       return 1;
     }

@@ -17,7 +17,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "better-cli-alerts": "^1.1.4",
+    "better-cli-alerts": "^2.0.0",
     "chalk": "^5.4.1",
     "clipanion": "^4.0.0-rc.4",
     "enquirer": "^2.4.1",

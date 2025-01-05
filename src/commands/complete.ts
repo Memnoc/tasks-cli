@@ -18,24 +18,21 @@ export class CompleteCommand extends Command {
 
     const taskIndex = tasks.findIndex((t) => t.id === this.id);
     if (taskIndex === -1) {
-      // this.context.stdout.write(chalk.red(`Task ${this.id} not found\n`));
       alert({
         type: "error",
         message: `Task ${this.id} not found`,
-        description: "ERROR",
+        description: "OOPS :(",
       });
       return 1;
     }
 
     tasks[taskIndex].status = TaskStatus.COMPLETED;
     await saveTasks(tasks);
-    // this.context.stdout.write(
-    //   chalk.green(`Completed task:${tasks[taskIndex].title}\n`),
-    // );
+
     alert({
       type: "success",
       message: `Completed task:${tasks[taskIndex].title}`,
-      description: "SUCCESS",
+      description: "YAY :)",
     });
   }
 }

@@ -26,7 +26,7 @@ export class DeleteCommand extends Command {
     alert({
       type: "warning",
       message: `Deleted task: ${deletedTask.title}`,
-      description: "OOPS :(",
+      description: "FYI..",
     });
     return 0;
   }

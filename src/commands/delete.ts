@@ -6,6 +6,7 @@ export class DeleteCommand extends Command {
   static paths = [["delete"]];
   id = Option.String();
   force = Option.Boolean("--force", false);
+  status = Option.String("--status", { required: false });
 
   async execute() {
     const tasks = await loadTasks();

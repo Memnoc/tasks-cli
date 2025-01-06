@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { Command } from "clipanion";
+import { Command, Option } from "clipanion";
 import { loadTasks } from "../utils/storage";
 import { TaskStatus } from "../types/TaskStatus";
 
@@ -20,13 +20,25 @@ const getStatusSymbol = (status: TaskStatus): string => {
 };
 
 export class ListCommand extends Command {
-  static paths = [["list"]];
+  status = Option.String("--status", { required: false });
+  static paths = [["list"], ["ls"]];
+  static usage = Command.Usage({
+    description: "List all tasks",
+    examples: [
+      ["List all tasks", "tasks list"],
+      ["Short form", "tasks ls"],
+    ],
+  });
 
   async execute() {
     const tasks = await loadTasks();
-    tasks.forEach((task) => {
+
+    const filteredTasks = this.status
+      ? tasks.filter((task) => task.status === this.status?.toUpperCase())
+      : tasks;
+
+    filteredTasks.forEach((task) => {
       const status = getStatusSymbol(task.status);
-      // HEADER: stdout in node
       this.context.stdout.write(`${status} ${task.id}: ${task.title}\n`);
     });
     return 0;

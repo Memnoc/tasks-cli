@@ -34,6 +34,13 @@ export class AddCommand extends Command {
         status: TaskStatus.PENDING,
       };
 
+      const { status } = await prompt<{ status: string }>({
+        type: "select",
+        name: "status",
+        message: "Choose status:",
+        choices: Object.values(TaskStatus),
+      });
+
       await saveTasks([...tasks, newTask]);
 
       alert({
